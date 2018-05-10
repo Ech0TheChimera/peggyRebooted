@@ -45,5 +45,11 @@ public class platformController : MonoBehaviour {
 	// returns x position of platform
 	float getPlatformPosX () {
 		return transform.position.x;
+	
+	}
+
+	void OnTriggerEnter (Collider other)
+	{
+		teleportBall ();
 	}
 }
