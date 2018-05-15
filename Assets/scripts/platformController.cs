@@ -7,6 +7,7 @@ public class platformController : MonoBehaviour {
 	// References to platform, ball, and horizontal movement value
 	private GameObject mainPlatform;
 	public static GameObject ball;
+	private Rigidbody rb;
 	private float hval;
 	public float platSpeed;
 
@@ -14,11 +15,15 @@ public class platformController : MonoBehaviour {
 	void Start () {
 		mainPlatform = GameObject.Find("mainPlatform");
 		ball = GameObject.Find ("ball");
+		rb = ball.GetComponent<Rigidbody>();
 		hval = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		rb.velocity = new Vector3 (0f, -5f, 0f);
+
 		// get horizontal val,
 		// 0 if not pressing <--, -->, a or d
 		// < 0 if pressing --> or d
