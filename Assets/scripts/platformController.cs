@@ -6,8 +6,9 @@ public class platformController : MonoBehaviour {
 
 	// References to platform, ball, and horizontal movement value
 	private GameObject mainPlatform;
-	private GameObject ball;
+	public static GameObject ball;
 	private float hval;
+	public float platSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -27,18 +28,18 @@ public class platformController : MonoBehaviour {
 		// If we want to move to the right
 		// and we're not at the far edge (10) minus 1/2 platform size (5/2 = 2.5)
 		if (hval > 0 && getPlatformPosX() <= 7.5) {
-			transform.Translate (0.1f, 0f, 0f);
+			transform.Translate (platSpeed * 0.1f, 0f, 0f);
 		}
 
 		// If we want to move to the left
 		// and we're not at the far edge (-10) plus 1/2 platform size (5/2 = 2.5)
 		else if (hval < 0 && getPlatformPosX() >= -7.5) {
-			transform.Translate (-0.1f, 0f, 0f);
+			transform.Translate (-platSpeed * 0.1f, 0f, 0f);
 		}
 	}
 
 	// sets ball to top with random x pos between -10 and 10
-	void teleportBall () {
+	public static void teleportBall () {
 		ball.transform.position = new Vector3(Random.Range(-10,10),6f,0f);
 	}
 
@@ -51,5 +52,6 @@ public class platformController : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		teleportBall ();
+		pointSys.points++;
 	}
 }
