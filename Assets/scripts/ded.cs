@@ -14,7 +14,8 @@ public class ded : MonoBehaviour {
 		
 	}
 	void OnTriggerEnter(Collider other) {
-		pointSys.points = 0;
+		if (--pointSys.points <= 0)
+			pointSys.points = 0;
 		platformController.teleportBall ();
 	}
 }
