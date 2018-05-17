@@ -17,5 +17,6 @@ public class ded : MonoBehaviour {
 		if (--pointSys.points <= 0)
 			pointSys.points = 0;
 		platformController.teleportBall ();
+		gameProgressionSystem.changeBallSpeed (pointSys.points);
 	}
 }

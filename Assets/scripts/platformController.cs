@@ -10,11 +10,13 @@ public class platformController : MonoBehaviour {
 	private Rigidbody rb;
 	private float hval;
 	public float platSpeed;
+	public static float ballSpeed;
 
 	// Use this for initialization
 	void Start () {
 		mainPlatform = GameObject.Find("mainPlatform");
 		ball = GameObject.Find ("ball");
+		ballSpeed = 2.5f;
 		rb = ball.GetComponent<Rigidbody>();
 		hval = 0;
 	}
@@ -22,7 +24,7 @@ public class platformController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		rb.velocity = new Vector3 (0f, -5f, 0f);
+		rb.velocity = new Vector3 (0f, -ballSpeed, 0f);
 
 		// get horizontal val,
 		// 0 if not pressing <--, -->, a or d
@@ -58,5 +60,6 @@ public class platformController : MonoBehaviour {
 	{
 		teleportBall ();
 		pointSys.points++;
+		gameProgressionSystem.changeBallSpeed (pointSys.points);
 	}
 }
