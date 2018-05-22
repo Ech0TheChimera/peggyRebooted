@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\scripts\ded.cs" />
      <Compile Include="Assets\scripts\gameProgressionSystem.cs" />
+     <Compile Include="Assets\scripts\platBot.cs" />
      <Compile Include="Assets\scripts\platformController.cs" />
      <Compile Include="Assets\scripts\pointSys.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

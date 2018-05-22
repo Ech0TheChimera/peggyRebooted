@@ -16,7 +16,7 @@ public class platformController : MonoBehaviour {
 	void Start () {
 		mainPlatform = GameObject.Find("mainPlatform");
 		ball = GameObject.Find ("ball");
-		ballSpeed = 2.5f;
+		ballSpeed = 3;
 		rb = ball.GetComponent<Rigidbody>();
 		hval = 0;
 	}
