@@ -14,6 +14,7 @@ public class platformController : MonoBehaviour {
 	public float platSpeed;
 	public static float ballSpeed;
 	public static float bombOmbSpeed;
+	public AudioSource BombSound;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class platformController : MonoBehaviour {
 		rb = ball.GetComponent<Rigidbody>();
 		rb2 = bombOmb.GetComponent<Rigidbody>();
 		hval = 0;
+		BombSound = bombOmb.GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
@@ -78,6 +80,7 @@ public class platformController : MonoBehaviour {
 			transform.localScale += new Vector3(-0.5F, 0, 0);
 			pointSys.points = 0;
 			gameProgressionSystem.changeBallSpeed (pointSys.points);
+			BombSound.Play (); 
 		}
 	}
 }
