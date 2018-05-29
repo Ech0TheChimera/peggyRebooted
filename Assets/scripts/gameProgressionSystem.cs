@@ -6,15 +6,16 @@ public class gameProgressionSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	public static void changeBallSpeed (int points) {
 		platformController.ballSpeed =  3 + (points * 0.1f);
+		platformController.bombOmbSpeed = 2 + (points * 0.05f);
 	}
 }
