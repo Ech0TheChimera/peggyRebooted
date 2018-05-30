@@ -15,6 +15,7 @@ public class platformController : MonoBehaviour {
 	public static float ballSpeed;
 	public static float bombOmbSpeed;
 	public AudioSource BombSound;
+	public AudioSource SplatSound;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,7 @@ public class platformController : MonoBehaviour {
 		rb2 = bombOmb.GetComponent<Rigidbody>();
 		hval = 0;
 		BombSound = bombOmb.GetComponent<AudioSource> ();
+		SplatSound = mainPlatform.GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
@@ -75,12 +77,13 @@ public class platformController : MonoBehaviour {
 			teleportBall ();
 			pointSys.points++;
 			gameProgressionSystem.changeBallSpeed (pointSys.points);
+			SplatSound.Play ();
 		} else {
 			teleportBomb ();
 			transform.localScale += new Vector3(-0.5F, 0, 0);
 			pointSys.points = 0;
 			gameProgressionSystem.changeBallSpeed (pointSys.points);
-			BombSound.Play (); 
+			BombSound.Play ();
 		}
 	}
 }

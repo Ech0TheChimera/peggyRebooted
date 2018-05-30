@@ -29,10 +29,13 @@ public class platBot : MonoBehaviour {
 		d = hb - hp;
 		d2 = ho - hp;
 		d3 = vo + 4.1f;
-		moveAmt = 2.5f + 0.01f * pointSys.points;
+		moveAmt = 2.5f + 0.03f * pointSys.points;
 
 		if (d2 < 3 && d2 > -3 && d3 < moveAmt && d3 > -1) {
-			plat.transform.Translate (5 * 0.1f, 0f, 0f);
+			if (d2 < 0)
+				plat.transform.Translate (5 * 0.1f, 0f, 0f);
+			else
+				plat.transform.Translate (-5 * 0.1f, 0f, 0f);
 		} else if ((d3 < 2.5 && d3 > -1) && ((d2 > 3 && d2 < 7) || (d2 < -3 && d2 > -7))) {
 			;
 		} else {

@@ -16,7 +16,7 @@ public class pointSys : MonoBehaviour {
 		points = 0;
 		text = GetComponent<Text> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		text.text = "Points: " + points;
