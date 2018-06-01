@@ -12,12 +12,14 @@ public class platBot : MonoBehaviour {
 	private float vo;
 	float d,d2,d3;
 	float moveAmt;
+	int pspeed;
 
 	// Use this for initialization
 	void Start () {
 		plat = GameObject.Find("mainPlatform");
 		ball = GameObject.Find ("ball");
 		omb = GameObject.Find ("bombOmb");
+		pspeed = 5;
 	}
 
 	// Update is called once per frame
@@ -33,20 +35,20 @@ public class platBot : MonoBehaviour {
 
 		if (d2 < 3 && d2 > -3 && d3 < moveAmt && d3 > -1) {
 			if (d2 < 0)
-				plat.transform.Translate (5 * 0.1f, 0f, 0f);
+				platformController.moveRight (pspeed);
 			else
-				plat.transform.Translate (-5 * 0.1f, 0f, 0f);
+				platformController.moveLeft (pspeed);
 		} else if ((d3 < 2.5 && d3 > -1) && ((d2 > 3 && d2 < 7) || (d2 < -3 && d2 > -7))) {
-			;
+			; // Do nothing
 		} else {
 			// If we're close enough to catch the ball
 			// OR the ball is too far to catch, do nothing
-			if ((d < 2.5 && d > -2.5) || (d > 15 && pointSys.getPoints () > 300)) {
+			if ((d < (0.5 * plat.transform.localScale.x) && d > -(0.5 * plat.transform.localScale.x)) || (d > 15 && pointSys.getPoints () > 300)) {
 				;
 			} else if (d > 0) {
-				plat.transform.Translate (5 * 0.1f, 0f, 0f);
+				platformController.moveRight (pspeed);
 			} else if (d < 0) {
-				plat.transform.Translate (-5 * 0.1f, 0f, 0f);
+				platformController.moveLeft (pspeed);
 			}
 		}
 	}

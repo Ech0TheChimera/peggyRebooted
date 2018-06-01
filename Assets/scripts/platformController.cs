@@ -5,6 +5,7 @@ using UnityEngine;
 public class platformController : MonoBehaviour {
 
 	// References to platform, ball, and horizontal movement value
+	public static GameObject mainPlatform;
 	public static GameObject ball;
 	public static GameObject bombOmb;
 	private Rigidbody rb;
@@ -16,6 +17,7 @@ public class platformController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		mainPlatform = GameObject.Find ("mainPlatform");
 		ball = GameObject.Find ("ball");
 		bombOmb = GameObject.Find ("bombOmb");
 		ballSpeed = 3;
@@ -38,14 +40,14 @@ public class platformController : MonoBehaviour {
 
 		// If we want to move to the right
 		// and we're not at the far edge (10) minus 1/2 platform size (5/2 = 2.5)
-		if (hval > 0 && getPlatformPosX() <= 7.5) {
-			transform.Translate (platSpeed * 0.1f, 0f, 0f);
+		if (hval > 0 && getPlatformPosX() <= 10 - (0.5 * mainPlatform.transform.localScale.x)) {
+			moveRight ((int)platSpeed);
 		}
 
 		// If we want to move to the left
 		// and we're not at the far edge (-10) plus 1/2 platform size (5/2 = 2.5)
-		else if (hval < 0 && getPlatformPosX() >= -7.5) {
-			transform.Translate (-platSpeed * 0.1f, 0f, 0f);
+		else if (hval < 0 && getPlatformPosX() >= -10 + (0.5 * mainPlatform.transform.localScale.x)) {
+			moveLeft ((int)platSpeed);
 		}
 	}
 
@@ -62,7 +64,19 @@ public class platformController : MonoBehaviour {
 	// returns x position of platform
 	float getPlatformPosX () {
 		return transform.position.x;
+	}
 
+
+	public static void moveRight(int speed) {
+		if (speed < 0)
+			speed *= -1;
+		mainPlatform.transform.Translate (speed * 0.1f, 0f, 0f);
+	}
+
+	public static void moveLeft(int speed) {
+		if (speed < 0)
+			speed *= -1;
+		mainPlatform.transform.Translate (-speed * 0.1f, 0f, 0f);
 	}
 
 	void OnTriggerEnter (Collider other)
@@ -74,7 +88,7 @@ public class platformController : MonoBehaviour {
 			soundController.ballHit ();
 		} else {
 			teleportBomb ();
-			transform.localScale += new Vector3(-0.5F, 0, 0);
+			transform.localScale += new Vector3(-0.25f * transform.localScale.x, 0, 0);
 			pointSys.reset ();
 			gameProgressionSystem.changeBallSpeed (pointSys.getPoints ());
 			soundController.bombHit ();
