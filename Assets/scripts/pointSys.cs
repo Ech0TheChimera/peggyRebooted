@@ -19,7 +19,9 @@ public class pointSys : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		if (points < 0) {
+			points = 0;
+		}
 	}
 
 	public static int getPoints() {
