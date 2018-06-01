@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class soundController : MonoBehaviour {
 	// References to sounds
-	private static ArrayList<AudioSource> sounds;
+	private static List<AudioSource> sounds;
+
 	// Use this for initialization
 	void Start () {
-		sounds = new ArrayList<AudioSource>(GetComponents<AudioSource>());
-		foreach (AudioSource s in sounds)
-			print(s);
+		sounds = new List<AudioSource> ();
+		foreach (AudioSource s in GetComponents<AudioSource>()) {
+			sounds.Add(s);
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 
 	}
+
 	public static void ballMiss() {
 		float r = Random.Range(0,10);
 		if (r <= 2)
@@ -28,5 +31,13 @@ public class soundController : MonoBehaviour {
 			sounds[6].Play ();
 		else
 			sounds[7].Play ();
+	}
+
+	public static void ballHit() {
+		sounds [1].Play ();
+	}
+
+	public static void bombHit() {
+		sounds [2].Play ();
 	}
 }

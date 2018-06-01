@@ -5,7 +5,6 @@ using UnityEngine;
 public class platformController : MonoBehaviour {
 
 	// References to platform, ball, and horizontal movement value
-	private GameObject mainPlatform;
 	public static GameObject ball;
 	public static GameObject bombOmb;
 	private Rigidbody rb;
@@ -14,12 +13,9 @@ public class platformController : MonoBehaviour {
 	public float platSpeed;
 	public static float ballSpeed;
 	public static float bombOmbSpeed;
-	public AudioSource BombSound;
-	public AudioSource SplatSound;
 
 	// Use this for initialization
 	void Start () {
-		mainPlatform = GameObject.Find("mainPlatform");
 		ball = GameObject.Find ("ball");
 		bombOmb = GameObject.Find ("bombOmb");
 		ballSpeed = 3;
@@ -27,8 +23,6 @@ public class platformController : MonoBehaviour {
 		rb = ball.GetComponent<Rigidbody>();
 		rb2 = bombOmb.GetComponent<Rigidbody>();
 		hval = 0;
-		BombSound = bombOmb.GetComponent<AudioSource> ();
-		SplatSound = mainPlatform.GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
@@ -77,13 +71,13 @@ public class platformController : MonoBehaviour {
 			teleportBall ();
 			pointSys.increment ();
 			gameProgressionSystem.changeBallSpeed (pointSys.getPoints ());
-			SplatSound.Play ();
+			soundController.ballHit ();
 		} else {
 			teleportBomb ();
 			transform.localScale += new Vector3(-0.5F, 0, 0);
 			pointSys.reset ();
 			gameProgressionSystem.changeBallSpeed (pointSys.getPoints ());
-			BombSound.Play ();
+			soundController.bombHit ();
 		}
 	}
 }

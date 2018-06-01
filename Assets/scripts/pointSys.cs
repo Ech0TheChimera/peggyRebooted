@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class pointSys : MonoBehaviour {
 
-	private GameObject mainPlatform;
 	private static int points;
 	private static Text text;
 
 
 	// Use this for initialization
 	void Start () {
-		mainPlatform = GameObject.Find("mainPlatform");
 		points = 0;
 		text = GetComponent<Text> ();
 	}
