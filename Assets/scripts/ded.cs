@@ -25,8 +25,8 @@ public class ded : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		if (other.gameObject.name == "ball") {
-			if (--pointSys.points <= 0)
-			pointSys.points = 0;
+			if (pointSys.getPoints () - 1 <= 0)
+			pointSys.decrement ();
 			platformController.teleportBall ();
 			float r = Random.Range(0,10);
 			if (r <= 2)
@@ -43,6 +43,6 @@ public class ded : MonoBehaviour {
 			platformController.teleportBomb ();
 		}
 
-		gameProgressionSystem.changeBallSpeed (pointSys.points);
+		gameProgressionSystem.changeBallSpeed (pointSys.getPoints ());
 	}
 }

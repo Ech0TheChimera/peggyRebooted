@@ -75,14 +75,14 @@ public class platformController : MonoBehaviour {
 	{
 		if (other.gameObject.name == "ball") {
 			teleportBall ();
-			pointSys.points++;
-			gameProgressionSystem.changeBallSpeed (pointSys.points);
+			pointSys.increment ();
+			gameProgressionSystem.changeBallSpeed (pointSys.getPoints ());
 			SplatSound.Play ();
 		} else {
 			teleportBomb ();
 			transform.localScale += new Vector3(-0.5F, 0, 0);
-			pointSys.points = 0;
-			gameProgressionSystem.changeBallSpeed (pointSys.points);
+			pointSys.reset ();
+			gameProgressionSystem.changeBallSpeed (pointSys.getPoints ());
 			BombSound.Play ();
 		}
 	}

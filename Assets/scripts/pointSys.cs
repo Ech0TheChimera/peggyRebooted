@@ -6,8 +6,8 @@ using UnityEngine;
 public class pointSys : MonoBehaviour {
 
 	private GameObject mainPlatform;
-	public static int points;
-	Text text;
+	private static int points;
+	private static Text text;
 
 
 	// Use this for initialization
@@ -19,6 +19,27 @@ public class pointSys : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		text.text = "Points: " + points;
+
+	}
+
+	public static int getPoints() {
+		return points;
+	}
+
+	public static void increment() {
+		display(++points);
+	}
+
+	public static void decrement() {
+		display(--points);
+	}
+
+	public static void reset() {
+		points = 0;
+		display(points);
+	}
+
+	private static void display(int p) {
+		text.text = "Points: " + p;
 	}
 }

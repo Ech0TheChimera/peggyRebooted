@@ -29,7 +29,7 @@ public class platBot : MonoBehaviour {
 		d = hb - hp;
 		d2 = ho - hp;
 		d3 = vo + 4.1f;
-		moveAmt = 2.5f + 0.03f * pointSys.points;
+		moveAmt = 2.5f + 0.03f * pointSys.getPoints ();
 
 		if (d2 < 3 && d2 > -3 && d3 < moveAmt && d3 > -1) {
 			if (d2 < 0)
@@ -41,7 +41,7 @@ public class platBot : MonoBehaviour {
 		} else {
 			// If we're close enough to catch the ball
 			// OR the ball is too far to catch, do nothing
-			if ((d < 2.5 && d > -2.5) || (d > 15 && pointSys.points > 300)) {
+			if ((d < 2.5 && d > -2.5) || (d > 15 && pointSys.getPoints () > 300)) {
 				;
 			} else if (d > 0) {
 				plat.transform.Translate (5 * 0.1f, 0f, 0f);
