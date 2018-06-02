@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class soundController : MonoBehaviour {
 	// References to sounds
-	private static List<AudioSource> sounds;
+	private static List<AudioSource> ballMissSounds;
+	private static List<AudioSource> ballHitSounds;
+	private static List<AudioSource> bombHitSounds;
 
 	// Use this for initialization
 	void Start () {
-		sounds = new List<AudioSource> ();
-		foreach (AudioSource s in GetComponents<AudioSource>()) {
-			sounds.Add(s);
+		ballHitSounds = new List<AudioSource> ();
+		ballMissSounds = new List<AudioSource> ();
+		bombHitSounds = new List<AudioSource> ();
+		foreach (AudioSource s in GameObject.Find("ballMissSounds").GetComponents<AudioSource>()) {
+			ballMissSounds.Add(s);
+		}
+		foreach (AudioSource s in GameObject.Find("ballHitSounds").GetComponents<AudioSource>()) {
+			ballHitSounds.Add(s);
+		}
+		foreach (AudioSource s in GameObject.Find("bombHitSounds").GetComponents<AudioSource>()) {
+			bombHitSounds.Add(s);
 		}
 	}
 
@@ -20,24 +30,17 @@ public class soundController : MonoBehaviour {
 	}
 
 	public static void ballMiss() {
-		float r = Random.Range(0,10);
-		if (r <= 2)
-			sounds[3].Play ();
-		else if (r <= 4)
-			sounds[4].Play ();
-		else if (r <= 6)
-			sounds[5].Play ();
-		else if (r <= 8)
-			sounds[6].Play ();
-		else
-			sounds[7].Play ();
+		int r = Random.Range(0,ballMissSounds.Count);
+		ballMissSounds[r].Play ();
 	}
 
 	public static void ballHit() {
-		sounds [1].Play ();
+		int r = Random.Range(0,ballHitSounds.Count);
+		ballHitSounds[r].Play ();
 	}
 
 	public static void bombHit() {
-		sounds [2].Play ();
+		int r = Random.Range(0,bombHitSounds.Count);
+		bombHitSounds[r].Play ();
 	}
 }
