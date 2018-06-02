@@ -11,7 +11,7 @@ public class pointSys : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		points = 0;
+		points = 300;
 		text = GetComponent<Text> ();
 	}
 
